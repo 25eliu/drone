@@ -1,2 +1,1 @@
-# pixhawk-pi-drone
-rocket drone
+# Pixhawk Pi Drone Project
