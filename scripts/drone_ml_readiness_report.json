@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-04 13:08:30.581834",
+  "timestamp": "2025-08-04 13:23:17.893509",
   "available_libraries": {
     "pymavlink": true,
     "dronekit": true,
@@ -13,14 +13,14 @@
     "smbus": true
   },
   "performance_results": {
-    "numpy_sensor_processing": 0.0017740726470947266,
-    "flight_mode_classification": 0.2406005859375,
+    "numpy_sensor_processing": 0.0047762393951416016,
+    "flight_mode_classification": 0.2665994167327881,
     "drone_ml_pipeline": {
-      "avg_cycle_time_ms": 12.655496597290039,
-      "max_cycle_time_ms": 69.74148750305176,
-      "avg_cpu_percent": 25.09,
-      "max_temperature": 47.236,
-      "cycles_per_second": 79.01704941504494
+      "avg_cycle_time_ms": 12.118077278137207,
+      "max_cycle_time_ms": 59.16714668273926,
+      "avg_cpu_percent": 26.014999999999997,
+      "max_temperature": 46.16,
+      "cycles_per_second": 82.52134204525557
     }
   },
   "readiness_score": 100.0,
