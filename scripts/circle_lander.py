@@ -125,15 +125,16 @@ class LandingTargetPublisher:
         # Time (usec)
         ts = int(time.time() * 1e6)
         self.master.mav.landing_target_send(
-            ts,
-            frame,                  # MAV_FRAME_BODY_NED (angles in body frame)
-            x_angle,                # angle_x [rad]
-            y_angle,                # angle_y [rad]
-            distance_m if distance_m else 0,  # distance (m) - set if known
-            0.0,                    # size_x (m) - optional
-            0.0,                    # size_y (m) - optional
-            0,                      # target_num
-            mavutil.mavlink.MAV_LANDING_TARGET_TYPE_VISION_FIDUCIAL
+            int(time.time()*1e6) & 0xFFFFFFFFFFFFFFFF,  # time_usec, uint64
+            0,                                          # target_num
+            int(frame),                                 # frame
+            float(x_angle),
+            float(y_angle),
+            float(distance_m or 0.0),
+            0.0,
+            0.0,
+            2,                                          # type
+            1                                           # position_valid
         )
 
     def send_periodic_status(self, result: DetectionResult):
@@ -250,8 +251,8 @@ class LandingTargetPublisher:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mavurl", default="serial:/dev/ttyAMA0:115200",
-                        help="MAVLink URL (serial:/dev/ttyAMA0:115200, udpout:127.0.0.1:14550, etc.)")
+    parser.add_argument("--mavurl", default="serial:/dev/serial0:115200",
+                        help="MAVLink URL (serial:/dev/serial0:115200, udpout:127.0.0.1:14550, etc.)")
     parser.add_argument("--hfov", type=float, default=78.0, help="Camera horizontal FOV (deg)")
     parser.add_argument("--width", type=int, default=640)
     parser.add_argument("--height", type=int, default=480)
